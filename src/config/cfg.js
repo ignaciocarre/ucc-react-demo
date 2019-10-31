@@ -1,5 +1,7 @@
 import {makeStyles} from "@material-ui/core";
 
+export const apiUrl = "http://api.localdistri.com";
+
 export const classes = makeStyles(theme => ({
     icon: {
         marginRight: theme.spacing(2),

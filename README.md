@@ -1,3 +1,14 @@
+## App demo que hicimos paso a paso en la clase 13
+
+- State
+- Props
+- Material-ui
+- Icons
+- Axios
+
+---
+## React readme 
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

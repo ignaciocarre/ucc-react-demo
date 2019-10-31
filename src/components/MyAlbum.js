@@ -11,44 +11,21 @@ import Grid from '@material-ui/core/Grid';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-import Axios from "axios";
-import Footer from "./Footer";
-import * as cfg from "../config/cfg";
+import MyFooter from "./MyFooter";
+import * as Conf from "../config/cfg";
+import Link from "@material-ui/core/Link";
 
-class Album extends Component {
 
-    componentDidMount() {
-        // Make a request for a user with a given ID
-        Axios.get('http://api.localdistri.com/api/products')
-            .then(response => {
-                let products = response.data.data;
-                this.setState({products:products});
-            })
-            .catch(error => {
-                // handle error
-                console.log(error);
-            })
-            .finally(() => {
-            });
-
-    }
-
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            products: []
-        };
-
-    }
+class MyAlbum extends Component {
 
     render() {
+
         return (
             <React.Fragment>
                 <CssBaseline/>
                 <AppBar position="relative">
                     <Toolbar>
-                        <CameraIcon className={cfg.classes.icon}/>
+                        <CameraIcon className={Conf.classes.icon}/>
                         <Typography variant="h6" color="inherit" noWrap>
                             Album layout
                         </Typography>
@@ -56,7 +33,7 @@ class Album extends Component {
                 </AppBar>
                 <main>
                     {/* Hero unit */}
-                    <div className={cfg.classes.heroContent}>
+                    <div className={Conf.classes.heroContent}>
                         <Container maxWidth="sm">
                             <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
                                 Album layout
@@ -66,7 +43,7 @@ class Album extends Component {
                                 Make it short and sweet, but not too short so folks don&apos;t simply skip over it
                                 entirely.
                             </Typography>
-                            <div className={cfg.classes.heroButtons}>
+                            <div className={Conf.classes.heroButtons}>
                                 <Grid container spacing={2} justify="center">
                                     <Grid item>
                                         <Button variant="contained" color="primary">
@@ -82,27 +59,32 @@ class Album extends Component {
                             </div>
                         </Container>
                     </div>
-                    <Container className={cfg.classes.cardGrid} maxWidth="md">
+                    <Container className={Conf.classes.cardGrid} maxWidth="md">
                         {/* End hero unit */}
                         <Grid container spacing={4}>
-                            {this.state.products.map(product => (
+                            {this.props.products.map(product => (
                                 <Grid item key={product.id} xs={12} sm={6} md={4}>
-                                    <Card className={cfg.classes.card}>
+                                    <Card className={Conf.classes.card}>
                                         <CardMedia
-                                            component={'img'}
-                                            className={cfg.classes.cardMedia}
-                                            image={'http://api.localdistri.com/files/products/' + product.id + '/default.jpg'}
-                                            title={product.name}
+                                            component={"img"}
+                                            className={Conf.classes.cardMedia}
+                                            image="https://source.unsplash.com/random"
+                                            title="Image title"
                                         />
-                                        <CardContent className={cfg.classes.cardContent}>
+                                        <CardContent className={Conf.classes.cardContent}>
                                             <Typography gutterBottom variant="h5" component="h2">
-                                                {product.name}
+                                                {product.title}
                                             </Typography>
                                             <Typography>
-                                                {product.description}
+                                                This is a media card. You can use this section to describe the content.
                                             </Typography>
                                         </CardContent>
                                         <CardActions>
+
+                                            <Link href="http://localhost:4200/form" cl>
+                                                Link
+                                            </Link>
+
                                             <Button size="small" color="primary">
                                                 View
                                             </Button>
@@ -116,12 +98,10 @@ class Album extends Component {
                         </Grid>
                     </Container>
                 </main>
-                {/* Footer */}
-                <Footer/>
-                {/* End footer */}
+                <MyFooter/>
             </React.Fragment>
         );
     }
 }
 
-export default Album;
+export default MyAlbum;
